@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEA Logística</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f5f7;
+  color:#1d2733;
+}
+header{
+  background:#111820;
+  color:white;
+  padding:22px;
+  text-align:center;
+}
+header h1{margin:0;font-size:30px}
+header p{margin:6px 0 0;color:#cbd3da}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+.welcome{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:20px;
+  box-shadow:0 2px 8px #00000012;
+}
+
+.menu{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:15px;
+}
+
+.card{
+  background:white;
+  border-radius:12px;
+  padding:22px;
+  cursor:pointer;
+  box-shadow:0 2px 8px #00000012;
+  border-left:5px solid #1d2733;
+  transition:.2s;
+}
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 5px 15px #00000020;
+}
+.icon{font-size:30px}
+.card h3{margin:10px 0 5px}
+.card p{margin:0;color:#66717c;font-size:14px}
+
+.panel{
+  display:none;
+  background:white;
+  margin-top:20px;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 2px 8px #00000012;
+}
+.panel.active{display:block}
+
+input,select,textarea{
+  width:100%;
+  padding:11px;
+  margin:6px 0 14px;
+  border:1px solid #ccd2d8;
+  border-radius:7px;
+  font-size:16px;
+}
+
+button{
+  background:#17212b;
+  color:white;
+  border:0;
+  padding:11px 18px;
+  border-radius:7px;
+  cursor:pointer;
+  font-size:15px;
+}
+button:hover{background:#293847}
+
+.close{
+  float:right;
+  background:#e9edf0;
+  color:#222;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#777;
+  font-size:13px;
+}
+
+@media(max-width:600px){
+  header h1{font-size:25px}
+  .container{padding:12px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>TEA LOGÍSTICA</h1>
+  <p>Sistema de Control de Transporte de Personal</p>
+</header>
+
+<div class="container">
+
+<div class="welcome">
+  <h2>Panel principal</h2>
+  <p>Administración y control de la operación.</p>
+</div>
+
+<div class="menu">
+
+<div class="card" onclick="abrir('rutas')">
+  <div class="icon">🗺️</div>
+  <h3>Rutas</h3>
+  <p>Alta y administración de rutas.</p>
+</div>
+
+<div class="card" onclick="abrir('unidades')">
+  <div class="icon">🚌</div>
+  <h3>Unidades</h3>
+  <p>Autobuses y camionetas.</p>
+</div>
+
+<div class="card" onclick="abrir('operadores')">
+  <div class="icon">👤</div>
+  <h3>Operadores</h3>
+  <p>Control de operadores.</p>
+</div>
+
+<div class="card" onclick="abrir('horarios')">
+  <div class="icon">🕐</div>
+  <h3>Horarios</h3>
+  <p>Entradas y salidas.</p>
+</div>
+
+<div class="card" onclick="abrir('clientes')">
+  <div class="icon">🏢</div>
+  <h3>Clientes</h3>
+  <p>Empresas y servicios.</p>
+</div>
+
+<div class="card" onclick="abrir('viajes')">
+  <div class="icon">📍</div>
+  <h3>Viajes</h3>
+  <p>Registro de servicios realizados.</p>
+</div>
+
+<div class="card" onclick="abrir('mantenimiento')">
+  <div class="icon">🔧</div>
+  <h3>Mantenimiento</h3>
+  <p>Control de servicios de unidades.</p>
+</div>
+
+<div class="card" onclick="abrir('reportes')">
+  <div class="icon">📊</div>
+  <h3>Reportes</h3>
+  <p>Información de operación.</p>
+</div>
+
+</div>
+
+<div id="panel" class="panel">
+<button class="close" onclick="cerrar()">Cerrar</button>
+
+<h2 id="titulo">Módulo</h2>
+
+<label>Nombre / descripción</label>
+<input type="text" placeholder="Escribe la información">
+
+<label>Fecha</label>
+<input type="date">
+
+<label>Hora</label>
+<input type="time">
+
+<label>Observaciones</label>
+<textarea rows="4" placeholder="Observaciones"></textarea>
+
+<button onclick="guardar()">Guardar información</button>
+</div>
+
+</div>
+
+<footer>
+TEA Transporte de Personal · TEA Logística
+</footer>
+
+<script>
+function abrir(modulo){
+ const nombres={
+ rutas:"Rutas",
+ unidades:"Unidades",
+ operadores:"Operadores",
+ horarios:"Horarios",
+ clientes:"Clientes",
+ viajes:"Viajes",
+ mantenimiento:"Mantenimiento",
+ reportes:"Reportes"
+ };
+ document.getElementById("titulo").innerText=nombres[modulo];
+ document.getElementById("panel").classList.add("active");
+ document.getElementById("panel").scrollIntoView({behavior:"smooth"});
+}
+
+function cerrar(){
+ document.getElementById("panel").classList.remove("active");
+}
+
+function guardar(){
+ alert("Información registrada en el prototipo de TEA Logística");
+}
+</script>
+
+</body>
+</html>
