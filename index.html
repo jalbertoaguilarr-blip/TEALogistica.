@@ -222,9 +222,34 @@ function cerrar(){
  document.getElementById("panel").classList.remove("active");
 }
 
-function guardar(){
- alert("Información registrada en el prototipo de TEA Logística");
+
+function guardar() {
+  const campos = document.querySelectorAll(
+    "#panel input, #panel textarea, #panel select"
+  );
+
+  const datos = Array.from(campos).map(campo => ({
+    valor: campo.value
+  }));
+
+  const registros = JSON.parse(
+    localStorage.getItem("tea_registros") || "[]"
+  );
+
+  registros.push({
+    modulo: document.getElementById("titulo").innerText,
+    fechaRegistro: new Date().toISOString(),
+    datos: datos
+  });
+
+  localStorage.setItem(
+    "tea_registros",
+    JSON.stringify(registros)
+  );
+
+  alert("Información guardada correctamente");
 }
+
 </script>
 
 </body>
